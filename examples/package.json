@@ -1,0 +1,14 @@
+{
+  "name": "koa-examples",
+  "version": "1.0.0",
+  "description": "examples demonstrate the usage of koa",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "koa2"
+  ],
+  "author": "sammy00",
+  "license": "MIT"
+}
