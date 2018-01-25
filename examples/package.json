@@ -4,11 +4,15 @@
   "description": "examples demonstrate the usage of koa",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/.bin/mocha"
   },
   "keywords": [
     "koa2"
   ],
   "author": "sammy00",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "koa": "^2.4.1",
+    "mocha": "^5.0.0"
+  }
 }
