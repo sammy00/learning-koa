@@ -5,7 +5,7 @@ const app = module.exports = new Koa();
 
 // custom 401 handling
 
-app.use(async function(ctx, next) {
+app.use(async function (ctx, next) {
   try {
     await next();
   } catch (err) {
@@ -14,6 +14,7 @@ app.use(async function(ctx, next) {
       ctx.set('WWW-Authenticate', 'Basic');
       ctx.body = 'cant haz that';
     } else {
+      console.log('----' + err.message);
       throw err;
     }
   }
@@ -21,11 +22,14 @@ app.use(async function(ctx, next) {
 
 // require auth
 
-app.use(auth({ name: 'tj', pass: 'tobi' }));
+app.use(auth({
+  name: 'sammy00',
+  pass: 'hello'
+}));
 
 // secret response
 
-app.use(async function(ctx) {
+app.use(async function (ctx) {
   ctx.body = 'secret';
 });
 
