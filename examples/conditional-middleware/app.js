@@ -8,7 +8,7 @@ const app = new Koa();
 // middleware may "wrap" other middleware.
 
 function ignoreAssets(mw) {
-  return async function(ctx, next) {
+  return async function (ctx, next) {
     if (/(\.js|\.css|\.ico)$/.test(ctx.path)) {
       await next();
     } else {
@@ -20,12 +20,19 @@ function ignoreAssets(mw) {
 
 // TRY:
 // $ curl http://localhost:3000/
+// should get log in the console, something like
+// <-- GET /style
+// --> GET /style 200 9ms 11b
+
 // $ curl http://localhost:3000/style.css
+// should see nothing in the console
+
 // $ curl http://localhost:3000/some.html
+// should get log in the console
 
 app.use(ignoreAssets(logger()));
 
-app.use(async function(ctx) {
+app.use(async function (ctx) {
   ctx.body = 'Hello World';
 });
 

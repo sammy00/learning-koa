@@ -6,4 +6,7 @@
 ## Progress  
 + [x] 404
 + [ ] base-auth: supertest to be removed
-+ [ ] body-parsing  
++ [x] body-parsing  
++ [x] compose  
++ [x] conditional-middleware  
++ [x] cookies  
