@@ -1,11 +1,15 @@
-var app = require('./app');
-var request = require('supertest').agent(app.listen());
+const server = require('./app').listen();
+var request = require('supertest').agent(server);
 
-describe('Hello World', function() {
-  it('should say "Hello World"', function(done) {
+describe('Hello World', function () {
+  after(() => {
+    server.close();
+  });
+
+  it('should say "Hello World"', function (done) {
     request
-    .get('/')
-    .expect(200)
-    .expect('Hello World', done);
+      .get('/')
+      .expect(200)
+      .expect('Hello World', done);
   });
 });

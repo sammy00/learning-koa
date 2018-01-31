@@ -1,7 +1,7 @@
 require('should');
-const app = require('./app');
+const server = require('./app').listen();
 const fs = require('fs');
-const request = require('supertest').agent(app.listen());
+const request = require('supertest').agent(server);
 
 // https://github.com/mscdex/busboy/blob/master/test/test-types-multipart.js
 const ct = 'multipart/form-data; boundary=---------------------------paZqsnEHRufoShdX6fh0lUhXBP4k';
@@ -27,23 +27,26 @@ const body = [
   '-----------------------------paZqsnEHRufoShdX6fh0lUhXBP4k--'
 ].join('\r\n');
 
-describe('Multipart Files', function() {
-  it('should store all the files', function(done) {
+describe('Multipart Files', function () {
+  after(() => {
+    server.close();
+  });
+  it('should store all the files', function (done) {
     request
-    .post('/')
-    .set('Content-Type', ct)
-    .send(body)
-    .expect(200)
-    .end(function(err, res) {
-      if (err) return done(err);
-
-      const files = res.body;
-      files.should.have.length(2);
-      fs.stat(files[0], function(err) {
+      .post('/')
+      .set('Content-Type', ct)
+      .send(body)
+      .expect(200)
+      .end(function (err, res) {
         if (err) return done(err);
 
-        fs.stat(files[1], done);
+        const files = res.body;
+        files.should.have.length(2);
+        fs.stat(files[0], function (err) {
+          if (err) return done(err);
+
+          fs.stat(files[1], done);
+        });
       });
-    });
   });
 });
