@@ -12,6 +12,7 @@
   "author": "sammy00",
   "license": "MIT",
   "dependencies": {
+    "fs-promise": "^2.0.3",
     "koa": "^2.4.1",
     "koa-basic-auth": "^2.0.0",
     "koa-body": "^2.5.0",
