@@ -1,12 +1,13 @@
 const Koa = require('koa');
 const fs = require('fs');
-const app = module.exports = new Koa();
 const path = require('path');
 const extname = path.extname;
 
+const app = module.exports = new Koa();
+
 // try GET /app.js
 
-app.use(async function(ctx) {
+app.use(async function (ctx) {
   const fpath = path.join(__dirname, ctx.path);
   const fstat = await stat(fpath);
 
@@ -23,8 +24,8 @@ if (!module.parent) app.listen(3000);
  */
 
 function stat(file) {
-  return new Promise(function(resolve, reject) {
-    fs.stat(file, function(err, stat) {
+  return new Promise(function (resolve, reject) {
+    fs.stat(file, function (err, stat) {
       if (err) {
         reject(err);
       } else {

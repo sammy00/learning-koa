@@ -3,21 +3,20 @@
  * to valid `data: <value>\n\n' events for SSE.
  */
 
-var Transform = require('stream').Transform;
-var inherits = require('util').inherits;
+const Transform = require('stream').Transform;
 
-module.exports = SSE;
+module.exports = () => new SSE();
 
-inherits(SSE, Transform);
+class SSE extends Transform {
+  constructor(options) {
+    super();
 
-function SSE(options) {
-  if (!(this instanceof SSE)) return new SSE(options);
+    options = options || {};
+    Transform.call(this, options);
+  }
 
-  options = options || {};
-  Transform.call(this, options);
+  _transform(data, enc, cb) {
+    this.push('data: ' + data.toString('utf8') + '\n\n');
+    cb();
+  }
 }
-
-SSE.prototype._transform = function(data, enc, cb) {
-  this.push('data: ' + data.toString('utf8') + '\n\n');
-  cb();
-};

@@ -1,10 +1,10 @@
 const Koa = require('koa');
-const app = module.exports = new Koa();
-
 const sse = require('./sse');
 const db = require('./db');
 
-app.use(async function(ctx) {
+const app = module.exports = new Koa();
+
+app.use(async function (ctx) {
   // otherwise node will automatically close this connection in 2 minutes
   ctx.req.setTimeout(Number.MAX_VALUE);
 
