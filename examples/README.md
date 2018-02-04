@@ -21,3 +21,7 @@
 + [x] stream-file  
 + [x] stream-objects  
 + [x] stream-server-side-events  
++ [x] stream-view  
++ [x] templates  
++ [x] upload  
++ [x] vhost  

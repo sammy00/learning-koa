@@ -1,13 +1,17 @@
-var app = require('./app');
-var request = require('supertest').agent(app.listen());
+const server = require('./app').listen();
+const request = require('supertest').agent(server);
 
-describe('Templates', function() {
-  describe('GET /', function() {
-    it('should respond with a rendered view', function(done) {
+describe('Templates', function () {
+  after(() => {
+    server.close();
+  });
+
+  describe('GET /', function () {
+    it('should respond with a rendered view', function (done) {
       request
-      .get('/')
-      .expect(200)
-      .expect('<p>Tobi is a 3 year old ferret.</p>', done);
+        .get('/')
+        .expect(200)
+        .expect('<p>Tobi is a 3 year old ferret.</p>', done);
     });
   });
 });

@@ -12,6 +12,7 @@
   "author": "sammy00",
   "license": "MIT",
   "dependencies": {
+    "ejs": "^2.5.7",
     "fs-promise": "^2.0.3",
     "koa": "^2.4.1",
     "koa-basic-auth": "^2.0.0",
@@ -21,6 +22,8 @@
     "koa-logger": "^3.1.0",
     "koa-router": "^7.3.0",
     "koa-session": "^5.8.1",
+    "koa-static": "^4.0.2",
+    "koa-views": "^6.1.3",
     "streaming-json-stringify": "^3.1.0"
   },
   "devDependencies": {

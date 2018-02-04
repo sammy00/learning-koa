@@ -1,4 +1,3 @@
-
 /**
  * Module dependencies.
  */
@@ -8,19 +7,22 @@ const serve = require('koa-static');
 const koaBody = require('koa-body');
 const Koa = require('koa');
 const fs = require('fs');
-const app = new Koa();
 const os = require('os');
 const path = require('path');
+
+const app = new Koa();
 
 // log requests
 
 app.use(logger());
 
-app.use(koaBody({ multipart: true }));
+app.use(koaBody({
+  multipart: true
+}));
 
 // custom 404
 
-app.use(async function(ctx, next) {
+app.use(async function (ctx, next) {
   await next();
   if (ctx.body || !ctx.idempotent) return;
   ctx.redirect('/404.html');
@@ -32,7 +34,7 @@ app.use(serve(path.join(__dirname, '/public')));
 
 // handle uploads
 
-app.use(async function(ctx, next) {
+app.use(async function (ctx, next) {
   // ignore non-POSTs
   if ('POST' != ctx.method) return await next();
 
